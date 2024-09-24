@@ -26,19 +26,14 @@ def superouMedia(faturamento: list):
     return superouList
 
 
-# Numeros de faturamento aleatorios
-# gerados para serem exemplos. 
+# Abre arquivo JSON
 
-faturamento_Objeto = {
-    1: 250.50,  2: 300.75,  3: 150.20,  4: 400.00,  5: 500.10,
-    8: 600.25,  9: 700.80, 10: 800.90, 11: 900.00, 12: 1000.50,
-   15: 1100.60, 16: 1200.70, 17: 1300.80, 18: 1400.90, 19: 1500.00,
-   22: 1600.10, 23: 1700.20, 24: 1800.30, 25: 1900.40, 26: 2000.50,
-   29: 2100.60, 30: 2200.70
-}
+with open("dados.json") as file:
+    faturamento_Objeto = json.load(file)
 
 
-faturamento_diario = list(faturamento_Objeto.values())
+faturamento_diario = [item['valor'] for item in faturamento_Objeto if item.get('valor') > 0]
+
 
 # Menor Valor Faturado
 print("Menor Valor Faturado:")
